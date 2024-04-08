@@ -16,7 +16,23 @@
     "lint": "eslint 'src/**/*.{ts,js}'",
     "lint:fix": "npm run lint --fix",
     "fix": "npm run format && npm run lint:fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "commit": "git-cz"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@digitalroute/cz-conventional-changelog-for-jira",
+      "jiraPrepend": "[",
+      "jiraAppend": "]",
+      "jiraPrefix": "CTMAR",
+      "skipBreaking": true,
+      "customScope": true
+    }
   },
   "keywords": [],
   "author": "",
@@ -37,6 +53,9 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.2.1",
+    "@commitlint/config-conventional": "^19.1.0",
+    "@digitalroute/cz-conventional-changelog-for-jira": "^8.0.1",
     "@types/compression": "^1.7.5",
     "@types/cookie-parser": "^1.4.7",
     "@types/cors": "^2.8.17",
@@ -51,6 +70,8 @@
     "@types/yup": "^0.32.0",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.1.3",
