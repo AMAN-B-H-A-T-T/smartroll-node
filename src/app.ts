@@ -7,6 +7,7 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import xss from 'xss-clean'
 
+import { logger } from 'config'
 import { ENVS, NODE_ENV } from 'constant'
 import router from 'routes'
 
@@ -87,13 +88,12 @@ app.use(helmet())
  */
 app.use(router)
 
-process.on('unhandledRejection', (reason, p) => {
-  console.error(reason, 'Unhandled Rejection at Promise', p)
+process.on('unhandledRejection', (reason) => {
   throw reason
 })
 
 process.on('uncaughtException', (err) => {
-  console.error(err, 'Uncaught Exception thrown')
+  logger.error(err)
   process.exit(0)
 })
 

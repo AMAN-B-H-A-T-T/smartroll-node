@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ENVS } from 'constant'
 
 const RESET = '\x1b[0m'

@@ -1,8 +1,8 @@
 {
-  "name": "ts",
+  "name": "marketplace-webapp-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": ">=18.19.0"
   },
@@ -14,7 +14,7 @@
     "start:prod": "cross-env NODE_ENV=production npm run build:run",
     "format": "prettier --write */**/*.{json,ts,js,md}",
     "lint": "eslint 'src/**/*.{ts,js}'",
-    "lint:fix": "npm run lint --fix",
+    "lint:fix": "npm run lint 'src/**/*.{ts,js}' --fix",
     "fix": "npm run format && npm run lint:fix",
     "prepare": "husky",
     "commit": "git-cz"
