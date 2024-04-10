@@ -13,8 +13,8 @@
     "start": "cross-env NODE_ENV=development npm run build:run",
     "start:prod": "cross-env NODE_ENV=production npm run build:run",
     "format": "prettier --write */**/*.{json,ts,js,md}",
-    "lint": "eslint 'src/**/*.{ts,js}'",
-    "lint:fix": "npm run lint 'src/**/*.{ts,js}' --fix",
+    "lint": "eslint src/**/*.{ts,js}",
+    "lint:fix": "eslint src/**/*.{ts,js} --fix",
     "fix": "npm run format && npm run lint:fix",
     "prepare": "husky",
     "commit": "git-cz"

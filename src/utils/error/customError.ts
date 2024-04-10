@@ -1,7 +1,7 @@
 type ErrorReturnType = {
   code: string
   message?: string
-  field?: string
+  fields?: Record<string, any>[]
 }
 
 export abstract class CustomError extends Error {

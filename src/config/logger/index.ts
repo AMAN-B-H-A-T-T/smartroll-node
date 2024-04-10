@@ -3,7 +3,7 @@ import { devLogger } from './development.logger'
 import { productionLogger } from './production.logger'
 
 const initLogger = () => {
-  if (process.env.NODE_ENV !== NODE_ENV.dev) {
+  if (process.env.NODE_ENV === NODE_ENV.dev) {
     return devLogger()
   }
 

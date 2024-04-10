@@ -1,17 +1,29 @@
-import { logger } from 'config'
+import { demoController } from 'controllers/test'
 import express from 'express'
-import { ApiError } from 'utils/error/apiError'
-import { tryCatch } from 'utils/helpers/tryCatch'
+import { validate } from 'middleware'
+import { tryCatch } from 'utils/helpers'
+import * as yup from 'yup'
 
 const router = express.Router()
 
+const schema = yup.object({
+  body: yup.object({
+    name: yup.string().trim().min(8).max(40).required().label('Name'),
+    abc: yup.string().trim().min(8).max(40).required().label('abc'),
+  }),
+  params: yup.object({
+    id: yup.string().required('Id is Required'),
+  }),
+})
+
 router.get(
   '/',
-  tryCatch(async (_req, _res, _next) => {
-    logger.info('TEST LOG')
-    throw new ApiError('API ERROR TEST', 'TEST_ERRO', 401)
-    // throw new ValidationError('Fail to validate login')
+
+  tryCatch(async (_req, res, _next) => {
+    res.json({ msg: 'get' })
   }),
 )
+
+router.post('/:id', validate(schema), demoController)
 
 export default router
