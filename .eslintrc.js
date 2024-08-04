@@ -31,6 +31,7 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
     '@typescript-eslint/no-unused-vars': ['off'],
+    '@typescript-eslint/no-explicit-any': 'warn',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'quote-props': ['warn', 'as-needed'],
     'linebreak-style': ['error', 'unix'],

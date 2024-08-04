@@ -9,7 +9,7 @@ const errorHandler: ErrorRequestHandler = (error, _req, res, _next) => {
     return res.status(error.statusCode).json({ ...error.serializeErrors() })
   }
 
-  res.status(500).send('Something went wrong!!')
+  res.status(400).send('Something went wrong!!')
 }
 
 export { errorHandler }

@@ -1,13 +1,15 @@
+import { ValidationError as YupValidationError } from 'yup'
 import { CustomError } from './customError'
-
 class ValidationError extends CustomError {
   readonly errorCode: string
   readonly statusCode: number
+  readonly errors: YupValidationError
 
-  constructor(message: string) {
-    super(message)
-    this.errorCode = 'VALIDATION_ERROR'
+  constructor(errors: YupValidationError) {
+    super('Validation Failed')
+    this.errorCode = 'VALIDATION_FAILED'
     this.statusCode = 422
+    this.errors = errors
 
     Object.setPrototypeOf(this, ValidationError.prototype)
   }
@@ -15,8 +17,10 @@ class ValidationError extends CustomError {
   serializeErrors() {
     return {
       code: this.errorCode,
-      message: this.message,
-      field: 'asdads',
+      fields: this.errors.inner.map((err) => ({
+        field: err.path?.split('.').slice(-1)[0],
+        message: err.message,
+      })),
     }
   }
 }

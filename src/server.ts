@@ -1,6 +1,6 @@
 import { ENVS } from 'constant'
 import http from 'http'
-import { serverConnectionLog } from 'utils'
+import { serverConnectionLog } from 'utils/helpers'
 import app from './app'
 
 const server = http.createServer(app)
