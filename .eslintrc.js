@@ -19,7 +19,6 @@ module.exports = {
   ],
   overrides: [
     {
-      // files: ['.eslintrc.{js,cjs}'],
       files: ['*.ts', '*.tsx'], // Add TypeScript files
       parserOptions: {
         sourceType: 'script',
@@ -30,7 +29,10 @@ module.exports = {
     indent: ['error', 2, { SwitchCase: 1 }],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
-    '@typescript-eslint/no-unused-vars': ['off'],
+    '@typescript-eslint/no-unused-vars': [
+      'warn', // Change from 'off' to 'warn' to get warnings for unused vars
+      { argsIgnorePattern: '^_' }, // Ignore unused args prefixed with `_`
+    ],
     '@typescript-eslint/no-explicit-any': 'warn',
     'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
     'quote-props': ['warn', 'as-needed'],

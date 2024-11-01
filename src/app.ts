@@ -2,14 +2,12 @@ import compression from 'compression'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import express from 'express'
-import rateLimit from 'express-rate-limit'
 import helmet from 'helmet'
 import morgan from 'morgan'
 import xss from 'xss-clean'
 
 import { logger } from 'config'
-import { ENVS, NODE_ENV } from 'constant'
-import router from 'routes'
+import { NODE_ENV } from 'constant'
 
 const app = express()
 
@@ -18,29 +16,10 @@ const app = express()
  */
 app.use(
   cors({
-    origin: [''],
+    origin: ['*'],
     credentials: true,
   }),
 )
-
-/**
- * -------------------------- RATE LIMIT --------------------------
- *
- * Middleware for rate limiting requests if provided in the environment
- */
-if (ENVS.RATE_LIMIT) {
-  app.use(
-    rateLimit({
-      windowMs: (Number(ENVS.RATE_LIMIT_DURATION) || 1) * 60 * 60 * 1000, // Duration in milliseconds
-      max: Number(ENVS.RATE_LIMIT_REQUEST || 200), // Total number of requests allowed in the duration
-      message: `You have exceeded ${
-        ENVS.RATE_LIMIT_REQUEST || 200
-      } requests in ${
-        ENVS.RATE_LIMIT_DURATION || 1
-      } hour limit!, please try again in an hour!`, // Error message for exceeding limit
-    }),
-  )
-}
 
 /**
  * -------------------------- EXPRESS --------------------------
@@ -86,7 +65,6 @@ app.use(helmet())
 /**
  * -------------------------- ROUTES --------------------------
  */
-app.use(router)
 
 process.on('unhandledRejection', (reason) => {
   throw reason

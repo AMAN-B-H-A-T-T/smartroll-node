@@ -7,7 +7,7 @@ class NotFoundError extends CustomError {
   constructor(message: string) {
     super(message)
     this.errorCode = 'NOT_FOUND'
-    this.statusCode = 401
+    this.statusCode = 404
 
     Object.setPrototypeOf(this, NotFoundError.prototype)
   }

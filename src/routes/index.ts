@@ -1,16 +1,24 @@
 import express from 'express'
 
+import { handleThirdPartyData } from 'controllers/test/handleThirdPartyData'
 import { errorHandler } from 'middleware'
-import { NotFoundError } from 'utils/error'
-import testRoutes from './test'
+import { Server } from 'socket.io'
 
 const router = express.Router()
 
-router.use('/test', testRoutes)
+export const createThirdPartyRoutes = (io: Server) => {
+  // Route to handle third-party API data
 
-router.use('*', () => {
-  throw new NotFoundError('URL not Found')
-})
+  router.get('/api/third-party-data', handleThirdPartyData(io))
+
+  return router
+}
+
+// router.use('*', (req, res) => {
+//   if (req.originalUrl === '/favicon.ico') {
+//     res.status(204).end()
+//   } else if (!res.headersSent) throw new NotFoundError('URL not Found dfas')
+// })
 
 router.use(errorHandler)
 

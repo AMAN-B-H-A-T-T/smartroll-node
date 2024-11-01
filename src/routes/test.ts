@@ -18,12 +18,10 @@ const schema = yup.object({
 
 router.get(
   '/',
-
   tryCatch(async (_req, res, _next) => {
     res.json({ msg: 'get' })
   }),
 )
-
 router.post('/:id', validate(schema), demoController)
 
 export default router
