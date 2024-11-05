@@ -6,6 +6,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "eslint.validate": ["javascript", "typescript"],
-  "workbench.colorTheme": "One Dark Pro Darker",
+  "workbench.colorTheme": "Atom One Dark Coal",
   "files.eol": "\n",
 }

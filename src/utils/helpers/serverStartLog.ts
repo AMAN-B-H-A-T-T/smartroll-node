@@ -14,13 +14,13 @@ export const serverConnectionLog = () => {
   console.log(`║    ${BOLD}🚀 Server Started  ${RESET}               ║`)
   process.env.NODE_ENV === 'development' &&
     console.log(
-      `║    🔗 http://localhost:${ENVS.PORT || 3000} ${RESET}         ║`,
+      `║    🔗 http://localhost:${ENVS.PORT || 4000} ${RESET}         ║`,
     )
   console.log('║                                      ║')
 
   console.log(
     `║    🌐 Port        : ${YELLOW}${
-      process.env.PORT || 3000
+      process.env.PORT || 4000
     }${RESET}             ║`,
   )
   console.log(

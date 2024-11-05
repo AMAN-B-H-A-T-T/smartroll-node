@@ -1,6 +1,6 @@
 import express from 'express'
 
-import { handleThirdPartyData } from 'controllers/test/handleThirdPartyData'
+import { student_attendance_data } from 'controllers/test/handleThirdPartyData'
 import { errorHandler } from 'middleware'
 import { Server } from 'socket.io'
 
@@ -9,7 +9,7 @@ const router = express.Router()
 export const createThirdPartyRoutes = (io: Server) => {
   // Route to handle third-party API data
 
-  router.get('/api/third-party-data', handleThirdPartyData(io))
+  router.post('/manage/student_attendace_data', student_attendance_data(io))
 
   return router
 }
